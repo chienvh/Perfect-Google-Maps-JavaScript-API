@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Place details</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;    
+      }
+
+      .links{
+      	float: left;
+      	background-color: #D2D3D3;
+      }
+	      .links ul{
+	      	list-style: none;  
+	      	padding: 10px;    
+      	}
+          .links ul li{
+            padding: 5px 0;
+            border-top: 1px solid #ffffff;
+          }
+  		      .links ul li a{
+  		   		text-decoration: none;
+  		   		line-height: 30px;
+            color: #00699c;
+  		      }
+  		      	.links ul li a:hover{
+  		   		text-decoration: underline;
+  		   		color: red;
+  		      }
+    </style>
+    <script language= "javascript" type= "text/javascript">
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+	  var markersArray = []; // To define a list of places.
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 45.517916, lng: -122.677554},
+          zoom: 20,
+		      mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+		
+		// Declares a popup which contains the place's info when the user clicks on a place name, it will display popup inside map.
+        var infowindow = new google.maps.InfoWindow();
+		
+		// Collects the places list.
+		markersArray[0] = new google.maps.Marker({
+              map: map,
+              position: {lat: 45.517882, lng: -122.677519},
+			       //icon: 'SET_YOUR_ICON_URL'
+            });
+			
+			google.maps.event.addListener(markersArray[0], 'click', function() {
+              infowindow.setContent('<div><b>Apple Pioneer Place</b>' +
+                '<br/>Retailer of Apple products & accessories' +
+				'<br><b>Adress:</b> Pioneer Place, 450 SW Yamhill St, Portland, OR 97204'+
+				'<br/><br/><a href="http://www.apple.com/">Visit Site</a>' +
+				'&nbsp | &nbsp <a target="_blank" href="https://www.google.com/maps/dir/Portland,+OR/Apple+Pioneer+Place,+Pioneer+Place,+450+SW+Yamhill+St,+Portland,+OR+97204/@45.5208275,-122.6820296,16z/data=!3m2!4b1!5s0x54950a05781017d1:0x3333a570d98ccff5!4m13!4m12!1m5!1m1!1s0x54950b0b7da97427:0x1c36b9e6f6d18591!2m2!1d-122.6764816!2d45.5230622!1m5!1m1!1s0x54950a056f058c1f:0xe391f5206cbeea58!2m2!1d-122.6775221!2d45.5178591">Get Directions</a>'+
+				'</div>');
+				      this.setIcon('point.png')
+              infowindow.open(map, this);
+            });
+		
+		markersArray[1] = new google.maps.Marker({
+              map: map,
+              position: {lat: 45.517789, lng: -122.677448},
+			       //icon: 'SET_YOUR_DEFAULT_ICON_URL'
+            });
+			
+			google.maps.event.addListener(markersArray[1], 'click', function() {
+              infowindow.setContent('<div><b>Suki Hana</b>' +
+                '<br/>Japanese Restaurant'+
+				'<br><b>Adress:</b> 450 Southwest Yamhill Street, Portland, OR 97204'+
+				'<br/><br/><a href="http://www.apple.com/">Visit Site</a>' +
+				'&nbsp | &nbsp <a target="_blank" href="https://www.google.com/maps/dir/Portland,+OR/Suki+Hana,+Southwest+Yamhill+Street,+Portland,+OR/@45.5207815,-122.6820296,16z/data=!3m2!4b1!5s0x54950a05781017d1:0x3333a570d98ccff5!4m13!4m12!1m5!1m1!1s0x54950b0b7da97427:0x1c36b9e6f6d18591!2m2!1d-122.6764816!2d45.5230622!1m5!1m1!1s0x54950a0571aacba7:0x65df26a1b42a68e5!2m2!1d-122.6774513!2d45.5177672">Get Directions</a>'+
+				'</div>');
+				this.setIcon('point.png')
+              infowindow.open(map, this);
+            });					
+      }
+	  
+	// This function will handle the action when the user clicks on any place's name.
+    function Redirect(i) {
+		    google.maps.event.trigger(markersArray[i],"click");
+	   }
+	</script>
+  </head>
+  <body>
+    <div class="info">
+      <h1>Perfect Google Maps JavaScript API</h1>
+      <h3>Author: chien.vh@gmail.com</h3>
+    </div>
+    <div class="links">
+      <ul>
+        <li><a href="javascript:Redirect(0)">Apple Pioneer Place</a></li>
+        <li><a href="javascript:Redirect(1)">Suki Hana</a></li>
+      </ul>
+    </div>
+
+    <div id="map"></div>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAD5t9Xa8yEtpvFaBnBj8A7UuJ1UwdBrT8&libraries=places&callback=initMap">
+    </script>
+  </body>
+</html>
